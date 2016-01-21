@@ -1,0 +1,58 @@
+<ion-view cache-view="false">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+
+  <ion-content>
+    <div class="card">
+      <div class="item-divider">
+        Switch Account:
+      </div>
+      <div ng-click="account.goAnonymous()" class="item item-icon-left"  ng-if="!account.useranonymous">
+        <i class="icon ion-person"></i> Anonymous
+      </div>
+
+      <div ng-show="account.userList.length>0">
+        <div class="item" ng-repeat="user in account.userList track by user.username">
+            <div ng-if="account.currentUserName != user.username">
+                {{user.username}}
+               <button class="button button-small button-balanced"
+                       ng-click="account.switchAccount(user)">
+                 <i class="icon ion-android-contact"></i> Switch
+               </button>
+              <button class="button button-small button-assertive"
+                      ng-click="account.removeAccount(user)">
+                <i class="icon ion-close-circled"></i> Remove
+              </button>
+            </div>
+        </div>
+      </div>
+      <div class="item" ng-click="account.showAddAccount()">
+        Add Existing User
+      </div>
+
+      <div class="item" ng-show="account.showAdd">
+        <div class="row form-wrapper" style="background-color: #e3e3e3">
+          <div class="col">
+            <form name="login_form" class="" novalidate>
+              <div class="form-fields-outer list list-inset">
+                <label class="item item-input">
+                  <span class="input-label">User Name</span>
+                  <input type="text" name="username" ng-model="account.username" required>
+                </label>
+                <label class="item item-input">
+                  <span class="input-label">Access Code</span>
+                  <input type="text" ng-model="account.password" required>
+                </label>
+              </div>
+              <button type="submit" class="log-in button button-balanced" ng-click="account.doLogin()" ng-disabled="login_form.$invalid">
+                Go
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </ion-content>
+</ion-view>

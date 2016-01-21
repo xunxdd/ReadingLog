@@ -1,0 +1,71 @@
+﻿<ion-view>
+
+        <ion-nav-buttons side="left">
+            <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+        </ion-nav-buttons>
+        <ion-nav-buttons side="right">
+          <button class="button button-clear" ng-click="stats.setTimeMode('weekly');">
+                    <img src="img/weekly.png" width="40" height="40" style="margin-top:-5px" />
+          </button>
+         <button class="button button-clear" ng-click="stats.setTimeMode('monthly');">
+                    <img src="img/monthly.png" width="40"  height="40" style="margin-top:-5px"/>
+            </button>
+          <button class="button button-clear" ng-click="stats.setTimeMode('yearly');">
+                    <img src="img/recent.png"  width="40"  height="40" style="margin-top:-5px"/>
+        </button>
+    </ion-nav-buttons>
+
+   <ion-content  class="has-header">
+        <div ng-show="!stats.allBooksRead || stats.allBooksRead.length===0">
+
+          <p class="text-center"> Looks like you have not read any books!</p>
+           <a class="button button-clear button-block" ui-sref="app.booklogform">
+             <img src="img/treasure/Start_Reading.png">
+           </a>
+        </div>
+        <div ng-show="stats.allBooksRead && stats.allBooksRead.length>0">
+            <label class="item item-input item-select" ng-show="stats.mode == 'weekly'">
+                <div class="input-label">
+                    Time Period:
+                </div>
+                <select ng-options="week as week.name for week in stats.weeks"
+                        ng-model="stats.weekselected" ng-change="stats.rechart()"></select>
+            </label>
+            <label class="item item-input item-select" ng-show="stats.mode == 'monthly'">
+                <div class="input-label">
+                    Time Period:
+                </div>
+                <select ng-options="month as month.name for month in stats.months"
+                        ng-model="stats.monthselected" ng-change="stats.rechart()"></select>
+            </label>
+            <!-- Pie chart-->
+            <div class="card">
+                <div class="item item-divider">
+                    Daily Reading Time
+                </div>
+                <div class="item item-text-wrap">
+                    <canvas id="line" class="chart chart-line" data="stats.chartReadingData.data" labels="stats.chartReadingData.labels" legend="false"
+                            series="['timeread']" chart-options="{showTooltips: false}"></canvas>
+
+                </div>
+            </div>
+
+
+            <div class="card">
+                <div class="item item-divider">
+                    Time Read By Genre
+                </div>
+                <div class="item item-text-wrap">
+                    <canvas id="bar" class="chart chart-bar" data="stats.chartGenreData.data"
+                            labels="stats.chartGenreData.labels" legend="false" series="['genre']" chart-options="{showTooltips: false}">
+                    </canvas>
+                </div>
+
+                <div class="item item-divider ">
+                </div>
+            </div>
+
+
+        </div>
+        </ion-content>
+</ion-view>

@@ -1,0 +1,46 @@
+<ion-view cache-view="false">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+
+  <ion-content>
+
+    <div ng-if="!treasure.totalLogs">
+      <p class="text-center"> You have not earned any treasures.</p>
+      <a class="button button-clear button-block" ui-sref="app.booklogform">
+        <img src="img/treasure/Start_Reading.png">
+      </a>
+    </div>
+    <div class="card"  ng-if="treasure.totalLogs">
+      <div class="item-divider">
+        Treasure Chest:
+      </div>
+
+      <div>
+        <div class="item" ng-show="treasure.totalLogs">
+            <div>Tickets -- You have logged <span class="assertive">{{treasure.totalLogs}}</span> times </div>
+            <img class="treasure" ng-repeat="ticket in treasure.tickets" ng-src="img/treasure/{{ticket.img}}"  />
+          <div class="clearfix">
+          </div>
+        </div>
+        <div class="item" ng-show="treasure.toalMinutes">
+          <div> Stickers -- You have read <span class="assertive">{{treasure.toalMinutes}}</span> minutes </div>
+          <img class="treasure" ng-repeat="sticker in treasure.stickers" ng-src="img/treasure/{{sticker.img}}"  />
+          <div class="clearfix">
+          </div>
+        </div>
+        <div class="item" ng-show="treasure.totalGenres">
+          <div> Stars -- You have read <span class="assertive">{{treasure.totalGenres}}</span> genres </div>
+          <img class="treasure" ng-repeat="sticker in treasure.stars" ng-src="img/treasure/{{sticker.img}}"  />
+          <div class="clearfix">
+          </div>
+        </div>
+        <div class="item" ng-show="treasure.totalCoins">
+          <div> Coins -- Wow, you have logged over 100 times </div>
+          <img class="treasure" ng-repeat="sticker in treasure.coins" ng-src="img/treasure/{{sticker.img}}"  />
+          <div class="clearfix">
+          </div>
+        </div>
+      </div>
+  </ion-content>
+</ion-view>

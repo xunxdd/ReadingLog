@@ -1,0 +1,50 @@
+﻿<ion-view cache-view="false">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+
+    <ion-nav-title>
+        <span>Books </span><span ng-show="viewall.genreName  && viewall.genreName.length>0">in {{viewall.genreName}}</span>
+    </ion-nav-title>
+    <ion-nav-buttons side="secondary">
+        <button class="button button-icon icon ion-ios-search-strong" ng-click="viewall.showFilterBar()"></button>
+    </ion-nav-buttons>
+
+    <ion-content direction="y" scrollbar-y="false">
+
+        <div ng-show="viewall.error"><h3>{{viewall.error}}</h3></div>
+        <ion-list>
+
+            <ion-item ng-repeat="item in viewall.booklogs | orderBy: '-timestamp'">
+                <div class="item item-thumbnail-left">
+                    <img ng-src="{{item.smThumbnail}}" />
+                    <h2> {{item.title}}</h2>
+                    <p>
+                     Author: {{item.authorStr}}
+                    </p>
+                    <p>
+                       {{item.readMannerName}}
+                    </p>
+                    <p>
+                       Date: {{item.dateRead}}
+                    </p>
+                    <p> Reading Time: {{item.timeRead}} minutes
+                    </p>
+                    <p>
+                      Genre:  {{item.genreName}}
+                    </p>
+                    <div class="clearfix">
+                        <a ng-click="viewall.editLog(item)"><i class="ion-edit" style="position:absolute;left:10px;top:100px; color:#ff4c4c; font-size:24px"></i></a>
+                        <a ng-click="viewall.removeLog(item)"><i class="ion-trash-a" style="position:absolute;left:40px;top:100px;color:#ff4c4c; font-size:24px"></i></a>
+                </div>
+                </div>
+            </ion-item>
+        </ion-list>
+        <div ng-if="viewall.booklogs !== undefined && !viewall.booklogs.length" class="no-results">
+          <p class="text-center"> Looks like you have not read any books!</p>
+          <a class="button button-clear button-block" ui-sref="app.booklogform">
+            <img src="img/treasure/Start_Reading.png">
+          </a>
+        </div>
+    </ion-content>
+</ion-view>

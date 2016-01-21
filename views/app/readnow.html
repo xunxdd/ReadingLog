@@ -1,0 +1,117 @@
+﻿<ion-view cache-view="false">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+
+    <ion-nav-title>
+        <span>Read A Book Now</span>
+    </ion-nav-title>
+    <ion-content>
+
+      <div class="card" ng-show="readNow.useranonymous"  style="background-color: #ffdddd; padding: 5px;">
+        Note: Currently you are in the temporary user mode. As a result,
+        your data may be lost.
+        To change, please <a ui-sref="app.accounts">Switch user</a>
+      </div>
+      <div class="card">
+            <div class="item item-divider">Book</div>
+            <div class="row">
+                <div class="col" ng-if="readNow.isMobileApp">
+                    <div ng-click="readNow.showModal(readNow.modalTypes.scan)">
+                        <i class="icon ion-qr-scanner"> Scan</i></div>
+                </div>
+                <div class="col">
+                    <div ng-click="readNow.showModal(readNow.modalTypes.search)">
+                        <i class="icon ion-search"> Search</i></div>
+                </div>
+                <div class="col">
+                    <div ng-click="readNow.showModal(readNow.modalTypes.bookform)">
+                        <i class="icon ion-edit"> Type it</i> </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="item item-divider">Time</div>
+            <div class="row">
+                <div class="col">
+                    <div ng-click="readNow.showModal(readNow.modalTypes.stopwatch)">
+                        <i class="icon ion-ios-stopwatch-outline"> StopWatch</i>
+                    </div>
+                </div>
+                <div class="col">
+                    <div ng-click="readNow.showModal(readNow.modalTypes.timer)">
+                        <i class="icon ion-ios-time"> Timer</i>
+                    </div>
+                </div>
+                <div class="col">
+                    <div ng-click="readNow.showModal(readNow.modalTypes.timeform)">
+                        <i class="icon ion-edit"> Type it</i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="list card" ng-show="readNow.book && readNow.book.title">
+
+            <div class="item item-body item-text-wrap">
+                <h2>Title: {{readNow.book.title}}</h2>
+                <p>Author: {{readNow.authorStr}}</p>
+                <p>Date: {{readNow.readingTimeStats.date}}</p>
+                <p>Reading Time: {{readNow.readingTimeStats.timeRead}} minutes</p>
+            </div>
+
+            <div class="item item-body item-text-wrap">
+                <img ng-src="{{readNow.book.smThumbnail}}" ng-show="readNow.book.smThumbnail.length>0" style="float:right">
+                <p class="left" style="margin-right:10px" ng-show="readNow.book.description.length>0">
+                    {{readNow.book.description}}
+                </p>
+            </div>
+        </div>
+
+
+      <div class="card">
+
+            <div class="item item-divider">Rating</div>
+            <div class="item">
+                <ionic-ratings ratingsobj='readNow.ratingsObject'></ionic-ratings>
+            </div>
+        </div>
+        <div class="card">
+            <div class="item item-divider">Please select</div>
+
+            <label class="item item-input item-select">
+                    Genre
+                <select ng-model="readNow.genre">
+                    <option ng-repeat="item in readNow.bookCategories"
+                            value="{{item.value}}" ng-selected="{{item.value == readNow.genre}}">
+                        {{item.name}}
+                    </option>
+                </select>
+            </label>
+        </div>
+        <div class="card">
+
+            <div class="item item-divider">Please choose from the following</div>
+            <ion-list>
+                <ion-radio ng-repeat="item in readNow.readWays"
+                       ng-value="{{item.value}}"
+                       ng-model="readNow.readingHow">
+                       <i class="icon {{item.icon}}"></i> {{item.name}}
+                </ion-radio>
+            </ion-list>
+        </div>
+        <div class="card">
+          <div class="item item-divider">Reading Notes</div>
+          <div class="item">
+            <textarea ng-model="readNow.notes" style="border: 1px solid #ccc; width:90%;" rows="5" ></textarea>
+          </div>
+        </div>
+        <div>
+            <div class="item item-body bottom-content">
+                <button type="submit" class="button button-assertive" ng-click="readNow.onSubmit()">
+                    Submit
+                </button>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

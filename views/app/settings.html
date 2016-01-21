@@ -1,0 +1,42 @@
+﻿<ion-view class="settings-view">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+
+    <ion-nav-title>
+        <span>Settings</span>
+    </ion-nav-title>
+
+    <ion-content>
+      <div class="card" ng-show="settings.useranonymous" style="background-color: #ffdddd; padding: 5px;">
+        Note: Currently you are in the temporary user mode.
+        To change, please <a ui-sref="app.accounts">Switch user</a>
+      </div>
+
+        <form class="css-form" novalidate ng-submit="settings.saveUserInfo(userForm.$valid)" name="userForm">
+
+            <div class="card">
+                <div class="item item-avatar padding item-thumbnail-left">
+                    <a  ng-show="settings.user.avartar" ng-click="settings.toggleImagePicker()"><img ng-src="img/avartar/{{settings.user.avartar}}" width="80" /></a>
+                    <a ng-show="!settings.user.avartar" ng-click="settings.toggleImagePicker()"><img ng-src="img/avartar/icon.png" width="80" /></a>
+                </div>
+                <div class="item" ng-show="settings.showPicker">
+                  <div ng-click="settings.setAvartar(avartar)"
+                       ng-repeat="avartar in settings.avartars">
+                    <img ng-src="img/avartar/{{avartar}}" style="float:left; margin: 5px">
+                  </div>
+                  <div class="clearfix"></div>
+                </div>
+
+                <div class="item">
+                  <label class="item item-input">
+                    <span class="input-label">Display Name</span>
+                      <input type="text" placeholder="Name" name="user_name" ng-model="settings.user.username" required>
+                  </label>
+                </div>
+              <div class="item">
+               <button type="submit" class="button button-assertive" ng-disabled="userForm.$invalid">Sumbit</button>
+              </div>
+            </div>
+    </ion-content>
+</ion-view>

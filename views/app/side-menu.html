@@ -1,0 +1,59 @@
+﻿<ion-side-menus enable-menu-with-back-views="false">
+    <ion-side-menu-content class="post-size-14px">
+        <ion-nav-bar class="bar app-top-bar">
+            <ion-nav-back-button>
+            </ion-nav-back-button>
+            <ion-nav-buttons side="left">
+                <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+            </ion-nav-buttons>
+        </ion-nav-bar>
+        <ion-nav-view name="menuContent"></ion-nav-view>
+    </ion-side-menu-content>
+
+    <ion-side-menu side="left" class="main-menu" expose-aside-when="(min-width:1024px)">
+        <ion-content>
+            <ion-list>
+                <ion-item class="heading-item item item-avatar" nav-clear menu-close  ui-sref="app.settings">
+                    <div class="user-image-container">
+                      <img ng-show="!sidemenu.user.avartar" class="user-image" ng-src="img/avartar/icon.png" />
+                      <img ng-show="sidemenu.user.avartar" class="user-image" ng-src="img/avartar/{{sidemenu.user.avartar}}">
+                    </div>
+                    <h2 class="greeting">Hi, {{sidemenu.user.username || 'You'}}</h2>
+                </ion-item>
+
+                <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.booklogform" >
+                    <i class="icon ion-ios-book"></i>
+                    <h2 class="menu-text">Read Now</h2>
+                </ion-item>
+                <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.viewall">
+                    <i class="icon ion-ios-albums"></i>
+                    <h2 class="menu-text">View All</h2>
+                </ion-item>
+                <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.viewgenres">
+                    <i class="icon ion-image"></i>
+                    <h2 class="menu-text">View Genres</h2>
+                </ion-item>
+                <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.stats">
+                    <i class="icon ion-ios-pie"></i>
+                    <h2 class="menu-text">Stats</h2>
+                </ion-item>
+                <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.weeklylog">
+                    <i class="icon ion-printer"></i>
+                    <h2 class="menu-text">Weekly</h2>
+                </ion-item>
+              <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.treasure">
+                <i class="icon ion-briefcase"></i>
+                <h2 class="menu-text">Treasure Chest</h2>
+              </ion-item>
+              <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.accounts">
+                  <i class="icon ion-android-contacts"></i>
+                  <h2 class="menu-text">Switch User</h2>
+                </ion-item>
+              <ion-item class="item-icon-left" style="background-color: #ffefed; white-space: normal; color: #272c30 " >
+                  <i class="icon ion-alert"></i>
+                  <div>Web users, please use mousewheel or drag page upwards or downwards for scrolling.</div>
+              </ion-item>
+            </ion-list>
+        </ion-content>
+    </ion-side-menu>
+</ion-side-menus>

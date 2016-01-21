@@ -1,0 +1,15 @@
+﻿
+<div class="item item-body item-text-wrap" ng-show="bookInfo != null" >
+    <div class="book-item" style="position:relative">
+        <h3 class="title">
+            {{bookInfo.title}} <br />
+            <h6>By: {{bookInfo.authors}}</h6>
+        </h3>
+        <div style="max-height:90%;overflow:auto">
+            <a target="_blank" ng-href="{{bookInfo.previewLink}}" style="float:right; margin:0 10px">
+                <img ng-src="{{bookInfo.smThumbnail}}">
+            </a>
+            <div>{{bookInfo.description}}</div>
+        </div>
+    </div>
+</div>
