@@ -7,4 +7,6 @@ The following YouTube video offers a glimse of its past "glory"
 
 For more details, please check out the article.
 
+https://www.linkedin.com/pulse/how-i-built-my-first-mobile-app-readinglog-xun-ding/
+
 Even though the app has never gained any traction, I loved it. And my kid was able to use it and have logged many books. 
